@@ -123,6 +123,6 @@
 <script>
 export default {
   layout: "default",
-  middleware: "auth",
+  middleware: ["auth", "admin"],
 };
 </script>

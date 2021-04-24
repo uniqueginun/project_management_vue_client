@@ -80,7 +80,10 @@ export default {
         await this.$auth.loginWith("laravelSanctum", {
           data: this.form,
         });
-        this.$router.replace({ name: "dashboard" });
+        const path = this.$auth.user.is_admin ? "admin/dashboard" : "dashboard";
+        this.$router.replace({
+          path,
+        });
       } catch (error) {
         const { data, status } = error.response;
         if (status === 422) {

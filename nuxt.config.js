@@ -14,15 +14,15 @@ export default {
       { hid: 'description', name: 'description', content: '' }
     ],
     link: [
-      { rel: 'stylesheet', type: 'text/css', href: 'vendor/fontawesome-free/css/all.min.css' },
-      { rel: 'stylesheet', type: 'text/css', href: 'css/sb-admin-2.min.css' },
+      { rel: 'stylesheet', type: 'text/css', href: '/vendor/fontawesome-free/css/all.min.css' },
+      { rel: 'stylesheet', type: 'text/css', href: '/css/sb-admin-2.min.css' },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
     ],
     script: [
-      { src: 'vendor/jquery/jquery.min.js' },
-      { src: 'vendor/bootstrap/js/bootstrap.bundle.min.js' },
-      { src: 'vendor/jquery-easing/jquery.easing.min.js' },
-      { src: 'js/sb-admin-2.min.js' },
+      { src: '/vendor/jquery/jquery.min.js' },
+      { src: '/vendor/bootstrap/js/bootstrap.bundle.min.js' },
+      { src: '/vendor/jquery-easing/jquery.easing.min.js' },
+      { src: '/js/sb-admin-2.min.js' },
     ]
   },
 

@@ -29,7 +29,7 @@
     <hr class="sidebar-divider" />
 
     <!-- Heading -->
-    <div class="sidebar-heading">Interface</div>
+    <div class="sidebar-heading">Projects</div>
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
@@ -93,7 +93,7 @@
     <hr class="sidebar-divider" />
 
     <!-- Heading -->
-    <div class="sidebar-heading">Addons</div>
+    <div class="sidebar-heading">Users</div>
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
@@ -157,7 +157,7 @@
     <div class="sidebar-card">
       <img
         class="sidebar-card-illustration mb-2"
-        src="img/undraw_rocket.svg"
+        src="/img/undraw_rocket.svg"
         alt=""
       />
       <p class="text-center mb-2">
