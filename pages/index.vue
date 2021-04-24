@@ -6,25 +6,34 @@
         <div class="text-center">
           <h1 class="h4 text-gray-900 mb-4">Project Manager</h1>
         </div>
-        <form class="user" @submit.prevent="login">
+        <form @submit.prevent="login" class="user">
           <div class="form-group">
             <input
               type="email"
               class="form-control form-control-user"
-              id="exampleInputEmail"
+              :class="{ 'is-invalid': errors.hasOwnProperty('email') }"
               aria-describedby="emailHelp"
               placeholder="Enter Email Address..."
               v-model="form.email"
             />
+            <div class="invalid-feedback" v-if="errors.hasOwnProperty('email')">
+              {{ errors.email[0] }}
+            </div>
           </div>
           <div class="form-group">
             <input
               type="password"
               class="form-control form-control-user"
-              id="exampleInputPassword"
+              :class="{ 'is-invalid': errors.hasOwnProperty('password') }"
               placeholder="Password"
               v-model="form.password"
             />
+            <div
+              class="invalid-feedback"
+              v-if="errors.hasOwnProperty('password')"
+            >
+              {{ errors.password[0] }}
+            </div>
           </div>
           <div class="form-group">
             <div class="custom-control custom-checkbox small">
@@ -39,8 +48,15 @@
               >
             </div>
           </div>
-          <button type="submit" class="btn btn-primary btn-user btn-block">
-            Login
+          <button
+            type="submit"
+            :disabled="processing"
+            class="btn btn-primary btn-user btn-block d-flex align-items-center justify-content-center"
+          >
+            <div class="font-weight-bolder">Login</div>
+            <div v-if="processing" class="mx-3 spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
           </button>
         </form>
         <hr />
@@ -59,12 +75,25 @@ export default {
     titleTemplate: "%s - Login",
   },
   methods: {
-    login() {
-      console.log(this.form);
+    async login() {
+      this.processing = true;
+      try {
+        await this.$auth.loginWith("laravelSanctum", {
+          data: this.form,
+        });
+      } catch (error) {
+        const { data, status } = error.response;
+        if (status === 422) {
+          this.errors = data.errors;
+        }
+        this.processing = false;
+      }
     },
   },
   data() {
     return {
+      processing: false,
+      errors: {},
       form: {
         email: "",
         password: "",
@@ -74,3 +103,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.invalid-feedback {
+  margin-left: 10px;
+}
+</style>
