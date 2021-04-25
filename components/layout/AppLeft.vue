@@ -4,59 +4,68 @@
     id="accordionSidebar"
   >
     <!-- Sidebar - Brand -->
-    <a
+    <nuxt-link
       class="sidebar-brand d-flex align-items-center justify-content-center"
-      href="index.html"
+      to="homePath"
     >
       <div class="sidebar-brand-icon rotate-n-15">
         <i class="fas fa-laugh-wink"></i>
       </div>
       <div class="sidebar-brand-text mx-3">PMS <sup>V0.1</sup></div>
-    </a>
+    </nuxt-link>
 
     <!-- Divider -->
     <hr class="sidebar-divider my-0" />
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-      <a class="nav-link" href="index.html">
+      <nuxt-link class="nav-link" to="homePath">
         <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Dashboard</span></a
+        <span>Dashboard</span></nuxt-link
       >
     </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider" />
 
-    <!-- Heading -->
-    <div class="sidebar-heading">Projects</div>
+    <template v-if="!is_admin">
+      <!-- Heading -->
+      <div class="sidebar-heading">Projects</div>
 
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-      <a
-        class="nav-link collapsed"
-        href="#"
-        data-toggle="collapse"
-        data-target="#collapseTwo"
-        aria-expanded="true"
-        aria-controls="collapseTwo"
-      >
-        <i class="fas fa-fw fa-cog"></i>
-        <span>Components</span>
-      </a>
-      <div
-        id="collapseTwo"
-        class="collapse"
-        aria-labelledby="headingTwo"
-        data-parent="#accordionSidebar"
-      >
-        <div class="bg-white py-2 collapse-inner rounded">
-          <h6 class="collapse-header">Custom Components:</h6>
-          <a class="collapse-item" href="buttons.html">Buttons</a>
-          <a class="collapse-item" href="cards.html">Cards</a>
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a
+          class="nav-link collapsed"
+          href="#"
+          data-toggle="collapse"
+          data-target="#collapseTwo"
+          aria-expanded="true"
+          aria-controls="collapseTwo"
+        >
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Projects</span>
+        </a>
+        <div
+          id="collapseTwo"
+          class="collapse"
+          aria-labelledby="headingTwo"
+          data-parent="#accordionSidebar"
+        >
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Projects:</h6>
+            <nuxt-link class="collapse-item" :to="{ path: 'projects/create' }"
+              >Create new project</nuxt-link
+            >
+            <nuxt-link class="collapse-item" :to="{ path: 'projects/updated' }"
+              >Updated Projects</nuxt-link
+            >
+            <nuxt-link class="collapse-item" :to="{ path: 'projects/outdated' }"
+              >Outdated Projects</nuxt-link
+            >
+          </div>
         </div>
-      </div>
-    </li>
+      </li>
+    </template>
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
@@ -152,27 +161,21 @@
     <div class="text-center d-none d-md-inline">
       <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
-
-    <!-- Sidebar Message -->
-    <div class="sidebar-card">
-      <img
-        class="sidebar-card-illustration mb-2"
-        src="/img/undraw_rocket.svg"
-        alt=""
-      />
-      <p class="text-center mb-2">
-        <strong>SB Admin Pro</strong> is packed with premium features,
-        components, and more!
-      </p>
-      <a
-        class="btn btn-success btn-sm"
-        href="https://startbootstrap.com/theme/sb-admin-pro"
-        >Upgrade to Pro!</a
-      >
-    </div>
   </ul>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    is_admin: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  computed: {
+    homePath() {
+      return this.is_admin ? "/admin/dashboard" : "dashboard";
+    },
+  },
+};
 </script>

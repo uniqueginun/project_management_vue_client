@@ -3,7 +3,7 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
       <!-- Sidebar -->
-      <app-left />
+      <app-left :is_admin="$auth.user.is_admin" />
       <!-- End of Sidebar -->
 
       <!-- Content Wrapper -->
